@@ -1,0 +1,331 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+<!--begin::Page title-->
+<div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-10 pb-lg-0"
+  data-kt-swapper="true" data-kt-swapper-mode="prepend"
+  data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
+  <!--begin::Heading-->
+  <h1 class="d-flex flex-column text-dark fw-bold my-0 fs-1">Tweets</h1>
+  <!--end::Heading-->
+
+  <!--begin::Breadcrumb-->
+  <ul class="breadcrumb breadcrumb-dot fw-semibold fs-base my-1">
+    <li class="breadcrumb-item text-muted">
+      <a href="{% url 'accounts' %}" class="text-muted text-hover-primary">
+        Inicio
+      </a>
+    </li>
+
+    <li class="breadcrumb-item text-muted">Tweets</li>
+
+    <li class="breadcrumb-item text-dark">Mostrar</li>
+  </ul>
+  <!--end::Breadcrumb-->
+</div>
+<!--end::Page title-->
+{% endblock title %}
+
+{% block controls %}
+<!--begin::Controls-->
+<div class="d-flex flex-wrap my-1">
+  <!--begin::Tab nav-->
+  <ul class="nav nav-pills me-6 mb-2 mb-sm-0" role="tablist">
+    <li class="nav-item m-0" role="presentation">
+      <a class="btn btn-sm btn-icon btn-light btn-color-muted btn-active-primary me-3 active" data-bs-toggle="tab"
+        href="#kt_project_users_card_pane" aria-selected="true" role="tab">
+        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/general/gen008.svg-->
+        <span class="svg-icon svg-icon-muted svg-icon-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 2H10C10.6 2 11 2.4 11 3V10C11 10.6 10.6 11 10 11H3C2.4 11 2 10.6 2 10V3C2 2.4 2.4 2 3 2Z"
+              fill="currentColor" />
+            <path opacity="0.3"
+              d="M14 2H21C21.6 2 22 2.4 22 3V10C22 10.6 21.6 11 21 11H14C13.4 11 13 10.6 13 10V3C13 2.4 13.4 2 14 2Z"
+              fill="currentColor" />
+            <path opacity="0.3"
+              d="M3 13H10C10.6 13 11 13.4 11 14V21C11 21.6 10.6 22 10 22H3C2.4 22 2 21.6 2 21V14C2 13.4 2.4 13 3 13Z"
+              fill="currentColor" />
+            <path opacity="0.3"
+              d="M14 13H21C21.6 13 22 13.4 22 14V21C22 21.6 21.6 22 21 22H14C13.4 22 13 21.6 13 21V14C13 13.4 13.4 13 14 13Z"
+              fill="currentColor" />
+          </svg>
+        </span>
+        <!--end::Svg Icon-->
+      </a>
+    </li>
+
+    <li class="nav-item m-0" role="presentation">
+      <a class="btn btn-sm btn-icon btn-light btn-color-muted btn-active-primary" data-bs-toggle="tab"
+        href="#kt_project_users_table_pane" aria-selected="false" tabindex="-1" role="tab">
+        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/general/gen010.svg-->
+        <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.3"
+              d="M2 21V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V21C22 21.6 21.6 22 21 22H3C2.4 22 2 21.6 2 21Z"
+              fill="currentColor" />
+            <path d="M2 10V3C2 2.4 2.4 2 3 2H21C21.6 2 22 2.4 22 3V10C22 10.6 21.6 11 21 11H3C2.4 11 2 10.6 2 10Z"
+              fill="currentColor" />
+          </svg>
+        </span>
+        <!--end::Svg Icon-->
+      </a>
+    </li>
+  </ul>
+  <!--end::Tab nav-->
+  <!--begin::Actions-->
+  <div class="d-flex my-0">
+    <a href="#" class="btn btn-sm btn-light btn-color-muted btn-active-primary me-3" data-bs-toggle="modal"
+      data-bs-target="#kt_modal_new_tweets">
+      <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/social/soc006.svg-->
+      <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24"
+        fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.3"
+          d="M19.0003 4.40002C18.2003 3.50002 17.1003 3 15.8003 3C14.1003 3 12.5003 3.99998 11.8003 5.59998C11.0003 7.39998 11.9004 9.49993 11.2004 11.2999C10.1004 14.2999 7.80034 16.9 4.90034 17.9C4.50034 18 3.80035 18.2 3.10035 18.2C2.60035 18.3 2.40034 19 2.90034 19.2C4.40034 19.8 6.00033 20.2 7.80033 20.2C15.8003 20.2 20.2004 13.5999 20.2004 7.79993C20.2004 7.59993 20.2004 7.39995 20.2004 7.19995C20.8004 6.69995 21.4003 6.09993 21.9003 5.29993C22.2003 4.79993 21.9003 4.19998 21.4003 4.09998C20.5003 4.19998 19.7003 4.20002 19.0003 4.40002Z"
+          fill="currentColor" />
+        <path
+          d="M11.5004 8.29997C8.30036 8.09997 5.60034 6.80004 3.30034 4.50004C2.90034 4.10004 2.30037 4.29997 2.20037 4.79997C1.60037 6.59997 2.40035 8.40002 3.90035 9.60002C3.50035 9.60002 3.10037 9.50007 2.70037 9.40007C2.40037 9.30007 2.00036 9.60004 2.10036 10C2.50036 11.8 3.60035 12.9001 5.40035 13.4001C5.10035 13.5001 4.70034 13.5 4.30034 13.6C3.90034 13.6 3.70035 14.1001 3.90035 14.4001C4.70035 15.7001 5.90036 16.5 7.50036 16.5C8.80036 16.5 10.1004 16.5 11.2004 15.8C12.7004 14.9 13.9003 13.2001 13.8003 11.4001C13.9003 10.0001 13.1004 8.39997 11.5004 8.29997Z"
+          fill="currentColor" />
+      </svg>
+    </span>
+    <!--end::Svg Icon-->
+      Agregar tweets
+    </a>
+    <a href="#" class="btn btn-sm btn-light btn-color-muted btn-active-primary me-3" data-bs-toggle="modal"
+      data-bs-target="#kt_modal_scripts">
+      <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/files/fil008.svg-->
+      <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.3"
+            d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM11.7 17.7L16 14C16.4 13.6 16.4 12.9 16 12.5C15.6 12.1 15.4 12.6 15 13L11 16L9 15C8.6 14.6 8.4 14.1 8 14.5C7.6 14.9 8.1 15.6 8.5 16L10.3 17.7C10.5 17.9 10.8 18 11 18C11.2 18 11.5 17.9 11.7 17.7Z"
+            fill="currentColor" />
+          <path
+            d="M10.4343 15.4343L9.25 14.25C8.83579 13.8358 8.16421 13.8358 7.75 14.25C7.33579 14.6642 7.33579 15.3358 7.75 15.75L10.2929 18.2929C10.6834 18.6834 11.3166 18.6834 11.7071 18.2929L16.25 13.75C16.6642 13.3358 16.6642 12.6642 16.25 12.25C15.8358 11.8358 15.1642 11.8358 14.75 12.25L11.5657 15.4343C11.2533 15.7467 10.7467 15.7467 10.4343 15.4343Z"
+            fill="currentColor" />
+          <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor" />
+        </svg>
+      </span>
+      <!--end::Svg Icon-->
+      Generar script
+    </a>
+  </div>
+  <!--end::Actions-->
+</div>
+<!--end::Controls-->
+{% endblock controls %}
+
+{% block contenido %}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+  <!--begin::Container-->
+  <div class="container-xxl" id="kt_content_container">
+    <!--begin::Tab Content-->
+    <div class="tab-content">
+      <!--begin::Tab pane-->
+      <div id="kt_project_users_card_pane" class="tab-pane fade show active" role="tabpanel">
+        <!--begin::Row-->
+        <div class="row g-6 g-xl-9">
+          {% for x in tweets %}
+          <!--begin::Col-->
+          <div class="col-md-6 col-xxl-4">
+            <!--begin::Card-->
+            <div class="card">
+              <!--begin::Card body-->
+              <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                <!--begin::Name-->
+                <a 
+                  class="fs-4 text-gray-800 text-hover-primary fw-bold mb-6">Mensaje: {{x.message}}</a>
+                <!--end::Name-->
+
+                <a href="{% url 'detail_tweets' x.id %}" class="btn btn-sm btn-light-primary fw-bold">
+                  Editar
+                </a>
+              </div>
+              <!--end::Card body-->
+            </div>
+            <!--end::Card-->
+          </div>
+          <!--end::Col-->
+          {% endfor %}
+        </div>
+        <!--end::Row-->
+      </div>
+      <!--end::Tab pane-->
+
+      <!--begin::Tab pane-->
+      <div id="kt_project_users_table_pane" class="tab-pane fade" role="tabpanel">
+        <!--begin::Card-->
+        <div class="card card-flush">
+          <!--begin::Card body-->
+          <div class="card-body pt-0">
+            <!--begin::Table container-->
+            <div class="table-responsive">
+              <!--begin::Table-->
+              <div id="kt_project_users_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="table-responsive">
+                  <table id="kt_project_users_table"
+                    class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold dataTable no-footer">
+                    <thead class="fs-7 text-gray-400 text-uppercase">
+                      <tr>
+                        <th class="min-w-250px sorting" tabindex="0" aria-controls="kt_project_users_table" rowspan="1"
+                          colspan="1" aria-label="Manager: activate to sort column ascending" style="width: 0px">
+                          Mensaje
+                        </th>
+                        <th class="min-w-50px text-end sorting_disabled" rowspan="1" colspan="1" aria-label="Details"
+                          style="width: 0px">
+                          Details
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="fs-6">
+                      {% for x in tweets %}
+                      <tr class="odd">
+                        <td>{{x.message}}</td>
+                        <td class="text-end">
+                          <a href="{% url 'detail_tweets' x.id %}" class="btn btn-light btn-sm">Editar</a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--end::Table-->
+            </div>
+            <!--end::Table container-->
+          </div>
+          <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+      </div>
+      <!--end::Tab pane-->
+    </div>
+    <!--end::Tab Content-->
+
+    <!--begin::Modal - Users Search-->
+    <div class="modal fade" id="kt_modal_new_tweets" tabindex="-1" style="display: none" aria-hidden="true">
+      <!--begin::Modal dialog-->
+      <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+          <!--begin::Modal header-->
+          <div class="modal-header pb-0 border-0 justify-content-end">
+            <!--begin::Close-->
+            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+              <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/arrows/arr061.svg-->
+              <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                    fill="currentColor" />
+                  <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                    fill="currentColor" />
+                </svg>
+              </span>
+              <!--end::Svg Icon-->
+            </div>
+            <!--end::Close-->
+          </div>
+          <!--begin::Modal header-->
+
+          <!--begin::Modal body-->
+          <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+            <!--begin:Form-->
+            <form class="form fv-plugins-bootstrap5 fv-plugins-framework" action="{% url 'save_tweets' %}"
+              method="POST">
+              {% csrf_token %}
+
+              <!--begin::Input group-->
+              <div class="d-flex flex-column mb-8">
+                <label class="fs-6 fw-semibold mb-2">Agregar tweets</label>
+                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                  para agregar tweets de forma masiva escribe los mensajes
+                  separados entre si por
+                  <kbd
+                    class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">;</kbd>
+                  recuerda tambien que al final del ultimo bloque no va el
+                  <kbd
+                    class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">;</kbd>.
+                </p>
+
+                <textarea id="tweets" name="tweets" class="form-control form-control-solid" rows="3"
+                  name="target_details" placeholder="Ejemplo: tweet 1; tweet 2; tweet 3"></textarea>
+              </div>
+              <!--end::Input group-->
+
+              <!--begin::Actions-->
+              <div class="text-center">
+                <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3" data-bs-dismiss="modal">
+                  Cancel
+                </button>
+
+                <button type="submit" id="kt_modal_new_target_submit" class="btn btn-primary">
+                  <span class="indicator-label"> Submit </span>
+                  <span class="indicator-progress">
+                    Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                  </span>
+                </button>
+              </div>
+              <!--end::Actions-->
+            </form>
+            <!--end:Form-->
+          </div>
+          <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+      </div>
+      <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Users Search-->
+
+    <!--begin::Modal - Users Search-->
+    <div class="modal fade" id="kt_modal_scripts" tabindex="-1" style="display: none" aria-hidden="true">
+      <!--begin::Modal dialog-->
+      <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+          <!--begin::Modal header-->
+          <div class="modal-header pb-0 border-0 justify-content-end">
+            <!--begin::Close-->
+            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+              <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/keenthemes/metronic/docs/core/html/src/media/icons/duotune/arrows/arr061.svg-->
+              <span class="svg-icon svg-icon-muted svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                    fill="currentColor" />
+                  <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                    fill="currentColor" />
+                </svg>
+              </span>
+              <!--end::Svg Icon-->
+            </div>
+            <!--end::Close-->
+          </div>
+          <!--begin::Modal header-->
+
+
+          <!--begin::Modal body-->
+          <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+            <!--begin:Form-->
+
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8">
+              <label class="fs-6 fw-semibold mb-2">Script</label>
+              <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                {{ script }}
+              </p>
+            </div>
+            <!--end::Input group-->
+          </div>
+          <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+      </div>
+      <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - Users Search-->
+  </div>
+  <!--end::Container-->
+</div>
+
+
+{% endblock contenido %}
